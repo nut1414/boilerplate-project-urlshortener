@@ -38,7 +38,7 @@ app.post('/api/shorturl',bodyparser.urlencoded({ extended: false }),(req,res)=>{
             let id = await ShortURL.countDocuments({}) + 1;
             ShortURL.create({original_url: req.body.url,id},(err,data)=>{
               if(err) throw 'unknown error';
-              console.log(short.original_url +" created " + id);
+              console.log(req.body.url +" created " + id);
               res.json({original_url:req.body.url,short_url:id});
             });
           }
@@ -47,7 +47,6 @@ app.post('/api/shorturl',bodyparser.urlencoded({ extended: false }),(req,res)=>{
   }catch(x){
     res.json({error: x});
   }
-  
 
 });
 
